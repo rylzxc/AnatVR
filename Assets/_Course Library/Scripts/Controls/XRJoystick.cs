@@ -14,7 +14,14 @@ public class XRJoystick : XRBaseInteractable
         Both,
         FrontBack,
         LeftRight,
+        UpDown
     }
+
+    [Tooltip("The minimum rotation value around the up-down axis")]
+    public int minUpDownRotation = -30;
+
+    [Tooltip("The maximum rotation value around the up-down axis")]
+    public int maxUpDownRotation = 30;
 
     [Tooltip("Joystick sensitivity")]
     public float rateOfChange = 0.1f;
@@ -33,7 +40,9 @@ public class XRJoystick : XRBaseInteractable
     // When the joystick's y value changes
     public ValueChangeEvent OnYValueChange = new ValueChangeEvent();
 
-    public Vector2 Value { get; private set; } = Vector2.zero;
+    public ValueChangeEvent OnZValueChange = new ValueChangeEvent();
+
+    public Vector3 Value { get; private set; } = Vector3.zero;
     private XRBaseInteractor selectInteractor = null;
 
     private Vector3 initialPosition = Vector3.zero;
@@ -111,6 +120,12 @@ public class XRJoystick : XRBaseInteractable
             finalRotation.z = zRotation;
         }
 
+         if (leverType == JoystickType.UpDown || leverType == JoystickType.Both)
+        {
+            float yRotation = GetRotationDifference(positionDifference.z, positionDifference.x);
+            finalRotation.y = yRotation;
+        }
+
         return finalRotation;
     }
 
@@ -137,13 +152,15 @@ public class XRJoystick : XRBaseInteractable
         Value = CalculateValue(rotation);
         OnXValueChange.Invoke(Value.x);
         OnYValueChange.Invoke(Value.y);
+        OnZValueChange.Invoke(Value.z);
     }
 
-    private Vector2 CalculateValue(Vector3 rotation)
+    private Vector3 CalculateValue(Vector3 rotation)
     {
-        Vector2 newValue = Vector2.zero;
+        Vector3 newValue = Vector3.zero;
         newValue.x = Normalize(rotation.z);
         newValue.y = Normalize(rotation.x);
+        newValue.z = Normalize(rotation.y);
         return newValue;
     }
 
