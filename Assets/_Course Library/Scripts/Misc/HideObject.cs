@@ -4,21 +4,11 @@ using UnityEngine;
 
 public class HideObject : MonoBehaviour
 {
-    private GameObject selectedObject;
-
-    public void Hide()
-    {
-        if (selectedObject.activeInHierarchy) {
-            selectedObject.SetActive(false);
-        } else {
-            selectedObject.SetActive(true);
-        }
-
-    }
-
+    
     public void SelectObject(GameObject obj) 
     {
-        selectedObject = obj;
+        ObjectTracker.objectTracker = obj;
+        Debug.Log("Selected object " + ObjectTracker.objectTracker.name);
     }
 
 }
