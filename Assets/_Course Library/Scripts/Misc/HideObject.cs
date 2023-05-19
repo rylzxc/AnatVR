@@ -8,7 +8,7 @@ public class HideObject : MonoBehaviour
     public void SelectObject(GameObject obj) 
     {
         ObjectTracker.objectTracker = obj;
-        Debug.Log("Selected object " + ObjectTracker.objectTracker.name);
+        //Debug.Log("Selected object " + ObjectTracker.objectTracker.name);
     }
 
 }
