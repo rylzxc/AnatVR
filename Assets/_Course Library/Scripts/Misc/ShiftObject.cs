@@ -24,7 +24,7 @@ public class ShiftObject : MonoBehaviour
         
         if (ObjectTracker.objectTracker != null && objects.Count == listCount) {
             if (ObjectTracker.objectTracker.activeInHierarchy) {
-                Vector3 targetPosition = new Vector3(2.00f, 0.30f, 1.30f);
+                Vector3 targetPosition = new Vector3(1.90f, 0.30f, 1.30f);
 
                 previousPosition = ObjectTracker.objectTracker.transform.position;
                 ObjectTracker.objectTracker.transform.position = targetPosition;
