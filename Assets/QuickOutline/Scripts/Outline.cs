@@ -92,6 +92,9 @@ public class Outline : MonoBehaviour {
     outlineMaskMaterial.name = "OutlineMask (Instance)";
     outlineFillMaterial.name = "OutlineFill (Instance)";
 
+    // outlineMaskMaterial.name = outlineMaskMaterial.name == "OutlineMask (Instance)" ? "OutlineMask (Instance)" : "OutlineMask (Instance) (Instance)";
+    // outlineFillMaterial.name = outlineFillMaterial.name == "OutlineFill (Instance)" ? "OutlineFill (Instance)" : "OutlineFill (Instance) (Instance)";
+
     // Retrieve or generate smooth normals
     LoadSmoothNormals();
 
@@ -143,6 +146,35 @@ public class Outline : MonoBehaviour {
       // Remove outline shaders
       var materials = renderer.sharedMaterials.ToList();
 
+      materials.Remove(outlineMaskMaterial);
+      materials.Remove(outlineFillMaterial);
+
+      renderer.materials = materials.ToArray();
+    }
+  }
+
+  public void OnSelect() {
+    foreach (var renderer in renderers) {
+      // Remove outline shaders
+      var materials = renderer.sharedMaterials.ToList();
+
+      // Should always evaluate to true 
+      if (materials.Contains(outlineMaskMaterial) && materials.Contains(outlineFillMaterial)) {
+        // Test1: lets add first then on deselct, we remove them
+        materials.Add(outlineMaskMaterial);
+        materials.Add(outlineFillMaterial);
+      }
+
+      renderer.materials = materials.ToArray();
+    }
+  }
+
+  public void OnDeselect() {
+    foreach (var renderer in renderers) {
+      // Remove outline shaders
+      var materials = renderer.sharedMaterials.ToList();
+
+      // May not always evaluate to true 
       materials.Remove(outlineMaskMaterial);
       materials.Remove(outlineFillMaterial);
 

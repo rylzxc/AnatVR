@@ -24,7 +24,7 @@ public class ShiftObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Previous rotation: " + previousRotation);
+
     }
 
     public void BringObjectCloser() {

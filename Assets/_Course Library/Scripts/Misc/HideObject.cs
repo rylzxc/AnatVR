@@ -6,7 +6,7 @@ public class HideObject : MonoBehaviour
 {
     void Update() 
     {
-        Debug.Log("InitRotation is: " + ObjectTracker.objectRotation);
+
     }
 
     public void SelectObject(GameObject obj) 
