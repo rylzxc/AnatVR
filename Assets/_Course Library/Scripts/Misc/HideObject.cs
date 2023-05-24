@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class HideObject : MonoBehaviour
 {
-    void Update() {
+    void Update() 
+    {
         Debug.Log("InitRotation is: " + ObjectTracker.objectRotation);
     }
+
     public void SelectObject(GameObject obj) 
     {
         ObjectTracker.objectTracker = obj;

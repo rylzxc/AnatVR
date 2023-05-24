@@ -59,6 +59,7 @@ public class ShiftObject : MonoBehaviour
 
             ObjectTracker.objectTracker.transform.position = previousPosition;
             ObjectTracker.objectTracker.transform.rotation = previousRotation;
+            ObjectTracker.objectRotation = previousRotation;
 
             objects.Add(ObjectTracker.objectTracker);
 
