@@ -5,16 +5,19 @@ using System.Linq;
 
 public class GhostObject : MonoBehaviour
 {
-    private float previousAlpha = 1.0f;
-    private List<GameObject> objects;
+    private float desiredAlpha = 0.0f;
+    private Material material;
 
     public void GhostTheObject()
     {
         if (ObjectTracker.objectTracker != null) {
-            objects = new List<GameObject>();
-            objects.Add(ObjectTracker.objectTracker);
-            ObjectTracker.objectTracker.SetActive(false);
+            GameObject selectedObj = ObjectTracker.objectTracker;
+            Renderer renderer = selectedObj.GetComponent<Renderer>();
+            material = renderer.materials[1];
 
+            Color color = material.color;
+            color.a = (color.a != desiredAlpha) ? desiredAlpha : 1.0f;
+            material.color = color;
         }
     }
 }
