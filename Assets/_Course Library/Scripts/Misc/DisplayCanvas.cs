@@ -19,6 +19,7 @@ public class DisplayCanvas : MonoBehaviour
         if (isSelected | isHovered) {
             childObject.SetActive(true);
         }
+        ObjectTracker.childObjectLabel = childObject;
     }
 
     public void OnHoverExit()
@@ -37,5 +38,4 @@ public class DisplayCanvas : MonoBehaviour
             childObject.SetActive(false);
         }
     }
-
 }

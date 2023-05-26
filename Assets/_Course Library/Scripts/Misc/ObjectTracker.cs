@@ -6,6 +6,7 @@ public class ObjectTracker : MonoBehaviour
 {
     public static GameObject objectTracker = null;
     public static Quaternion objectRotation;
+    public static GameObject childObjectLabel;
     // Start is called before the first frame update
     void Start()
     {
